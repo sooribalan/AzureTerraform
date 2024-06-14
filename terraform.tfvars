@@ -1,0 +1,5 @@
+rgname                 = "ClusterRG"
+location               = "West US 2"
+service_principal_name = "AKS-SPN"
+keyvault_name          = "aksvault"
+stateRG = "StateRG"
