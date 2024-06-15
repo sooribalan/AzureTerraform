@@ -15,6 +15,26 @@ pipeline {
     }
 
     stages {
+         stage('Install Terraform') {
+            steps {
+                script {
+                    sh '''
+                    #!/bin/bash
+                    TERRA_VERSION="1.8.5" # Replace with desired Terraform version
+                    if ! [ -x "$(command -v terraform)" ]; then
+                        echo 'Terraform is not installed, installing now...'
+                        wget https://releases.hashicorp.com/terraform/${TERRA_VERSION}/terraform_${TERRA_VERSION}_linux_amd64.zip
+                        unzip terraform_${TERRA_VERSION}_linux_amd64.zip
+                        sudo mv terraform /usr/local/bin/
+                        terraform -version
+                    else
+                        echo 'Terraform is already installed.'
+                        terraform -version
+                    fi
+                    '''
+                }
+            }
+        }
         stage('Checkout') {
             steps {
                 git branch: 'master', url: 'https://github.com/sooribalan/AzureTerraform.git'
