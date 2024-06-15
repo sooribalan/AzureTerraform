@@ -1,0 +1,46 @@
+pipeline {
+    agent any
+
+    parameters {
+        choice(name: 'ACTION', choices: ['apply', 'destroy'], description: 'Choose the Terraform action to perform')
+    }
+
+    environment {
+        // Define environment variables for Terraform and Azure
+        AZURE_SUBSCRIPTION_ID = credentials('AZURE_SUBSCRIPTION_ID')
+        AZURE_CLIENT_ID = credentials('AZURE_CLIENT_ID')
+        AZURE_CLIENT_SECRET = credentials('AZURE_CLIENT_SECRET')
+        AZURE_TENANT_ID = credentials('AZURE_TENANT_ID')
+    }
+
+     stages {
+        stage('Checkout') {
+            steps {
+                // Checkout code from the repository
+                checkout scm
+         
+            }
+        }
+     stages {
+        stage('initialize'){
+            steps {
+                scrpts {
+                // install terraform if not already installed
+                sh 'curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -'
+                sh 'sudo apt-add-repository "deb https://apt.releases.hashicorp.com $(lsb_release -cs) main"'
+                sh 'sudo apt-get update && sudo apt-get install terraform -y'
+            }
+        }
+     }
+    stages {
+        stage(Terraform initialize) {
+            steps{
+                scrpts {
+                    //initialize Terraform
+                    sh 'terraform init'
+                }
+
+
+            }
+        }
+    } 
