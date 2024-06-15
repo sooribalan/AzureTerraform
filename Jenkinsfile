@@ -1,14 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        // Define environment variables for Terraform and Azure
-        AZURE_SUBSCRIPTION_ID = credentials('AZURE_SUBSCRIPTION_ID')
-        AZURE_CLIENT_ID = credentials('AZURE_CLIENT_ID')
-        AZURE_CLIENT_SECRET = credentials('AZURE_CLIENT_SECRET')
-        AZURE_TENANT_ID = credentials('AZURE_TENANT_ID')
-    }
-
     parameters {
         choice(name: 'ACTION', choices: ['plan', 'apply', 'destroy'], description: 'Select action to perform')
         booleanParam(name: 'AUTO_APPROVE', defaultValue: false, description: 'Automatically approve apply and destroy actions')
