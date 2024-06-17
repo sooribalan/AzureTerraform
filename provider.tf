@@ -5,7 +5,7 @@ terraform {
     container_name       = "tfstate"                               # Can be passed via `-backend-config=`"container_name=<container name>"` in the `init` command.
     key                  = "terraform.tfstate"                # Can be passed via `-backend-config=`"key=<blob key name>"` in the `init` command.
     use_msi              = true                                   # Can also be set via `ARM_USE_OIDC` environment variable.
-    client_id            = "188fff17-a701-46a0-b5cc-66f73513521f"  # Can also be set via `ARM_CLIENT_ID` environment variable.
+    client_id            = "f8229643-6603-4ace-b3f7-ff2bef82267a"  # Can also be set via `ARM_CLIENT_ID` environment variable.
     subscription_id      = "736f8140-d7a6-40ec-86b4-9e3da5fc8382"  # Can also be set via `ARM_SUBSCRIPTION_ID` environment variable.
     tenant_id            = "06155f75-47a2-44dd-9324-7f35f30a5fbe"  # Can also be set via `ARM_TENANT_ID` environment variable.
   }
